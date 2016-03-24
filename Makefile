@@ -10,7 +10,7 @@ OBJECTS 	:=	$(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 TARGET		=	Sample.exe
 
 
-$(BINDIR)/$(TARGET): $(OBJECTS)
+$(BINDIR)/$(TARGET): workspace $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 	
 $(OBJECTS): $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
@@ -19,3 +19,6 @@ $(OBJECTS): $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDES)
 clean:
 	rm $(OBJDIR)/*.o $(BINDIR)/$(TARGET)
 
+workspace:
+	mkdir -p obj
+	mkdir -p output
